@@ -20,29 +20,41 @@ async function handle(request: Request) {
     case '/callback':
       return await fetchAccessToken(params);
   }
+
+  return new Response();
 }
 
 async function fetchAccessToken(requestParams: URLSearchParams) {
-  const code = requestParams.get('code');
+  try {
+    const code = requestParams.get('code');
 
-  const response = await fetch('https://github.com/login/oauth/access_token', {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'user-agent': 'decap-cms-github-oauth-api-cloudflare',
-      accept: 'application/json',
-    },
-    body: JSON.stringify({ client_id, client_secret, code }),
-  }).then((res) => res.json());
+    const response = await fetch(
+      'https://github.com/login/oauth/access_token',
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'user-agent': 'decap-cms-github-oauth-api-cloudflare',
+          accept: 'application/json',
+        },
+        body: JSON.stringify({ client_id, client_secret, code }),
+      }
+    ).then((res) => res.json());
 
-  const loginResponse = decapCMSLoginScript(response.access_token);
+    const loginResponse = decapCMSLoginScript(response.access_token);
 
-  return new Response(loginResponse, {
-    status: 201,
-    headers: {
-      'Content-Type': 'text/html;charset=UTF-8',
-    },
-  });
+    return new Response(loginResponse, {
+      status: 201,
+      headers: {
+        'Content-Type': 'text/html;charset=UTF-8',
+      },
+    });
+  } catch (err) {
+    console.error(err);
+    return new Response(err.message, {
+      status: 500,
+    });
+  }
 }
 
 function redirectToAuthFlow() {
