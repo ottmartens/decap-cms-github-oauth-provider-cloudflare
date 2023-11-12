@@ -30,6 +30,14 @@ wrangler login
 
 7. Configure Github action for deploying the worker – create a new [Cloudflare API token](https://dash.cloudflare.com/profile/api-tokens)(Use "Edit Cloudflare Workers" template) and add it as a secret in your fork's repository settings->secrets->actions.
 
+8. Add the following config to you Decap CMS config:
+```
+   backend:
+     name: github
+     repo: <your-repo>
+     base_url: <cloudflare-worker-url>
+```
+
 ## Credits
 
 Inspiration from:
