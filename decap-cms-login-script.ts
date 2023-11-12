@@ -1,5 +1,5 @@
 // Original version – https://github.com/vencax/netlify-cms-github-oauth-provider/blob/master/login_script.js
-export default function (token) {
+export default function (token: string) {
   return `<script>
 (function() {
   function receiveMessage(e) {
