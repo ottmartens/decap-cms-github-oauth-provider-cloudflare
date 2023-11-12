@@ -1,0 +1,7 @@
+name = "decap-cms-github-oauth-api"
+main = "index.ts"
+
+compatibility_date = "2023-11-11"
+
+account_id = "c192ee4c911d964935f8f53ac8399ae9"
+workers_dev = true

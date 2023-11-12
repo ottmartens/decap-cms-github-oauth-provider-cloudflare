@@ -1,0 +1,9 @@
+{
+  "name": "decap-cms-github-oauth-api-cloudflare-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Github login gateway for use with Decap CMS, configured for Cloudflare Worker environment",
+  "main": "index.ts",
+  "author": "Ott Martens",
+  "repository": "github:ottmartens/decap-cms-github-oauth-api-cloudflare"
+}
