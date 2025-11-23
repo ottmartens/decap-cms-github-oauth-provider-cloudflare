@@ -59,7 +59,7 @@ async function fetchAccessToken(requestParams: URLSearchParams) {
 
 function redirectToAuthFlow() {
   return Response.redirect(
-    `https://github.com/login/oauth/authorize?client_id=${client_id}`,
+    `https://github.com/login/oauth/authorize?client_id=${client_id}&scope=repo,user`,
     302
   );
 }
